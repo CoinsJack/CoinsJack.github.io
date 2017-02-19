@@ -134,7 +134,7 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
+      <div class="header-inner"><div class="site-meta custom-logo">
   
 
   <div class="custom-logo-site-title">
@@ -293,17 +293,44 @@
       
         
           
-            <p><strong>声明</strong>: 以下内容可能会引起某些读者不适, 请小心阅读. </p>
-<p><strong>前言</strong>: 我个人认为, C语言是一门必须要学习的语言, 如果你想深入学习编程的话. 但其实就现在这个时代的话, 你没有学习C语言的绝对必要.</p>
+            <p><strong>声明</strong>: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。</p>
+<p><strong>前言</strong>: 我自己认为, 对想要学习编程的人而言， C语言是一门必须要学习的语言, 但是其实就现在这个时代的话, 你没有学习C语言的绝对必要，站在巨人的肩膀上很好， 也很爽。</p>
+<hr>
+
+
 <p>编程语言里面有几个概念:</p>
 <ul>
 <li>数据类型</li>
 <li>变量</li>
 <li>流程控制</li>
 <li>函数</li>
+<li>运算</li>
 </ul>
-<p><em>数据类型</em> : 数据类型就是数据的类型. 因为计算机的职能就是操作数据. 而数据肯定是有类型的, 比如说听歌用的mp3, 看图片用的jpeg, 看片儿用的rmvb. C语言里面有一些她自己的基本的数据类型.<br>例如:　整数类型（顾名思义，　整数类型的变量存放的就是整数）　小数　字符(字符类型就是存放a b c d 这些符号的. 中文我们不用在这里考虑)等</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title=" 数据类型"></a> 数据类型</h2><p>  数据类型就是数据的类型. 因为计算机的职能就是操作数据. 而数据肯定是有类型的,比如说听歌用的mp3,看图片用的jpeg, 看片儿用的rmvb. C语言里面有一些她自己的基本的数据类型.例如:　整数类型（顾名思义，　整数类型的变量存放的就是整数）　小数　字符(字符类型就是存放a b c d 这些符号的. 中文我们不用在这里考虑)等</p>
 <p>所以, C语言是有这么一些类型能让你在计算机内表示现实的东西. 比如说你要保存一个人的名字的话, 就是字符类型. 你要保存一个人的年龄的话, 就是整数类型.</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>变量就是用来指代一个特定的数据类型对象的名称. 比如说, 我们在高中数学中学到的变量x, 它可以是1.25, 也可以是100. 我们在数学中用x来代替这个值, 或者指代一个集合, 比如说x属于R 全体实数.</p>
+<p>在C语言里面变量是一个数据类型的实例. 简单说, 就是如果你需要一个C语言表示来保存一个人的年龄值, 那么你应该这样做<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int age;</div></pre></td></tr></table></figure></p>
+<p>int是类型的关键字, age是变量的名字. 所以这行代码说. 我要一个叫age的变量. 如果你需要一些别的变量, 你可以这样做:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">double PI;</div><div class="line">char ch;</div></pre></td></tr></table></figure><br>第一行代码说 我要一个叫PI的小数类型的变量.<br>第二行代码说 我要一个字符类型的变量, 名字叫ch.</p>
+<p><strong>变量命名规则 :  变量名称必须以下划线(_)或者英文字母开头, 变量名可以由下划线 英文字母 数字组成.</strong></p>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p>流程控制就是对代码运行的流程进行控制， 一般来说， 代码是从上往下执行的。 但是， 有些特殊的语句能起到特殊的功能， 对代码执行可以进行较好的控制。</p>
+<p>C语言里面常用的三种循环控制是</p>
+<ul>
+<li>if 条件判断</li>
+<li>while 循环</li>
+<li>for 循环</li>
+</ul>
+<p>If</p>
+<p>条件判断的逻辑就是这样的： 如果A成立的话， 就B。 如果不是A而是C， 那就D。<br>简言之， 看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">if ( A ) </div><div class="line">&#123;</div><div class="line">	B;</div><div class="line">&#125; else if ( C ) </div><div class="line">&#123;</div><div class="line">	D;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>while</p>
+<p>while循环简单， 先看代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int n = 1;</div><div class="line">while(n &gt; 0)</div><div class="line">&#123;</div><div class="line">	n = n - 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>第一行声明了一个变量， 同时给他一个值， 令n为1； 当 n&gt;1 成立的时候，就执行循环体里面的语句， 执行到最后一行的时候， 就继续判断条件是否成立。 在本例中， 在第5行遇到右大括号的时候， 判断n&gt;1是否成立， 此时n = 0； 因为在 n = n - 1; 这一行代码中。 = 这个赋值号（将右边的结果赋给左边的变量）使得n先减去1， 然后把n-1的结果给n。这样的话while条件语句就不成立了。 结束循环， 执行第5行后面的代码。</p>
+<p>for</p>
+<p>for循环也是一种循环， 但是它是一种特殊的循环。 自身带有一种迭代更新的功能。 初学可以记住有这么一个循环存在， 自己写代码的时候， 参考一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for ( int n = 1; n &gt; 0; n = n- 1)</div><div class="line">&#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>这个for循环和while循环的功能是一样的， 但是这个循环体（｛｝包括的范围）是空的。<br>for循环先执行int n = 1; 然后判读条件是否成立， 如果成立的话， 先执行循环体，然后执行for循环语句括号里面第二个分号之后的部分， 在本例中， 就是n = n - 1。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数就是一个工厂，是一种投入和产出的过程。比如说面包厂原材料是小麦，产出结果是面包。<br><strong>先学习如何声明一个函数, 有点像工厂在工商部门注册的信息.</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 函数结果类型 函数名称(参数类型 参数名，...);</div><div class="line">int sum(int a , int b);</div></pre></td></tr></table></figure><br>我们在这里声明了一个函数， 他可以计算出两个整数的和， 参数的个数是可以改变的， 本例中这个工厂需要两个参数。一个叫a， 一个叫b。 而且他们的类型都是整数类型。这个叫sum的函数返回的结果的类型也是整数类型。<br>这样我们就注册了一个函数。</p>
+<p><strong>我们学习如何定义一个函数， 就是说：如何创建函数的实体， 修建工厂的过程。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int sum(int a, int b)</div><div class="line">&#123;</div><div class="line">	return (a+b);</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>return是返回的意思， 在这里就是说把a+b的结果返回。</p>
+<p><strong>如何使用函数。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int n = sum(1, 2);</div><div class="line">// 函数名（参数1， 参数2） 这个函数的返回值就是这个式子的计算结果</div></pre></td></tr></table></figure><br>在这里， 我们给n赋值为3。</p>
+<p>我们要介绍一个函数叫printf, 这个函数可以把一些字符打印在标准屏幕上面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">	printf(&quot;Hello Jack.&quot;);</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><strong>显然</strong>， 我们在这里定义了函数叫main，()里面说void意味着，他不需要参数。在函数体内部，它使用了一个叫printf的函数， 用它在屏幕上打印了Hello Jack.<br><img src="/images/HelloJack.png"></p>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>运算是一个很大的概念。 简单说， 前面的所有都是运算， 毕竟是计算机嘛。 你没必要去关心运算是什么，但是你<strong>绝对</strong>有必要了解C语言有哪些运算符（就像+，-，=这样的运算符），以便在你需要的时候，能想到它。</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>指针是C语言的核心内容， 另外讲解。</p>
 
           
         
