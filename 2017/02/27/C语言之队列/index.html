@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C语言, 指针," />
+  <meta name="keywords" content="C语言, 队列," />
 
 
 
@@ -92,8 +92,8 @@
 《C标准库》
 《C pr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言之指针">
-<meta property="og:url" content="http://yoursite.com/2017/02/20/C语言之指针/index.html">
+<meta property="og:title" content="C语言之队列">
+<meta property="og:url" content="http://yoursite.com/2017/02/27/C语言之队列/index.html">
 <meta property="og:site_name" content="我爱学习, 学习使我快乐">
 <meta property="og:description" content="声明: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
 前言: 我自己认为, 对想要学习编程的人而言， C语言是一门必须要学习的语言, 但是其实就现在这个时代的话, 你没有学习C语言的绝对必要。使用别的高级语言（比如python）站在巨人的肩膀上很好， 也很爽。
@@ -102,10 +102,9 @@
 《C语言程序设计》
 《C标准库》
 《C pr">
-<meta property="og:image" content="http://yoursite.com/images/swap.png">
-<meta property="og:updated_time" content="2017-02-27T10:28:49.330Z">
+<meta property="og:updated_time" content="2017-02-27T10:28:10.683Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C语言之指针">
+<meta name="twitter:title" content="C语言之队列">
 <meta name="twitter:description" content="声明: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
 前言: 我自己认为, 对想要学习编程的人而言， C语言是一门必须要学习的语言, 但是其实就现在这个时代的话, 你没有学习C语言的绝对必要。使用别的高级语言（比如python）站在巨人的肩膀上很好， 也很爽。
 推荐书目：
@@ -113,7 +112,6 @@
 《C语言程序设计》
 《C标准库》
 《C pr">
-<meta name="twitter:image" content="http://yoursite.com/images/swap.png">
 
 
 
@@ -131,7 +129,7 @@
   };
 </script>
 
-  <title> C语言之指针 | 我爱学习, 学习使我快乐 </title>
+  <title> C语言之队列 | 我爱学习, 学习使我快乐 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -251,7 +249,7 @@
             
             
               
-                C语言之指针
+                C语言之队列
               
             
           </h1>
@@ -263,8 +261,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2017-02-20T19:36:15+08:00" content="2017-02-20">
-              2017-02-20
+            <time itemprop="dateCreated" datetime="2017-02-27T18:16:33+08:00" content="2017-02-27">
+              2017-02-27
             </time>
           </span>
 
@@ -323,23 +321,14 @@
 
 </li>
 </ul>
-<p>C语言指针是C语言<strong>最重要</strong>的内容，很多人在初学C语言的时候有很多疑惑。在这里我希望自己能够给大家解释清楚C语言指针的内容。</p>
-<h1 id="指针是什么"><a href="#指针是什么" class="headerlink" title="指针是什么"></a>指针是什么</h1><p>指针就是一个变量。 它存储的是另一个变量的地址，当然指针也可以存储其他指针的地址。（指针应该也能存放自己本身的地址，你可以试一试. 但是可能需要一些小技巧）</p>
-<h1 id="声明一个指针变量"><a href="#声明一个指针变量" class="headerlink" title="声明一个指针变量"></a>声明一个指针变量</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int a = 10; // 声明一个int类型变量为a， 并且赋值为10</div><div class="line">int *pa; // 声明了一个指针变量.</div></pre></td></tr></table></figure>
-<p>第二行代码我们声明了一个指针变量，虽然这个*符号在靠近pa的地方，但是在这里我们声明的变量名是pa，它的类型是一个指针类型。它是一个指向int类型数据的指针。（你需要先接受这样的C语言表述）</p>
-<h1 id="给指针变量的赋值"><a href="#给指针变量的赋值" class="headerlink" title="给指针变量的赋值"></a>给指针变量的赋值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pa = &amp;a; // &amp;a的结果是a的地址的数值（0xff000000）这样的。 </div><div class="line">// 将这个地址值赋值给pa这个指针变量。像之前说的那样，指针变量存储的是一个地址值。</div></pre></td></tr></table></figure>
-<h1 id="可以在声明的时候，顺便赋值"><a href="#可以在声明的时候，顺便赋值" class="headerlink" title="可以在声明的时候，顺便赋值"></a>可以在声明的时候，顺便赋值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *pa = &amp;a;</div></pre></td></tr></table></figure>
-<p>在这里我们声明了一个指针变量， 它的名字是pa，我们将它的值赋值为变量a的地址。</p>
-<h1 id="指针的使用"><a href="#指针的使用" class="headerlink" title="指针的使用"></a>指针的使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *p = pa;</div></pre></td></tr></table></figure>
-<p>在这里我们将之前声明好的pa指针变量的值（也就是变量a的地址）赋值给了另一个叫p的int类型的指针变量。</p>
-<p>类比的看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int b = a;</div></pre></td></tr></table></figure><br>在这里我们把a的值赋值给了b， 他们俩都是int类型。</p>
-<p><strong>所以指针变量其实很简单， 他就是一个变量，他有普通变量的特点。但是他作为指针变量，他有他的特点。 在声明的时候，需要之前教的那样去声明。</strong>（至于说单行声明多个指针变量和单行声明多个指针变量和普通变量的方法， 我不想说。 我觉得没什么好说的。）<br>但是你需要知道下面这一件事情：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int *pa, a; </div></pre></td></tr></table></figure><br>这里的a并不是指针变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int* pa, a; </div></pre></td></tr></table></figure><br>这里的a也不是指针变量。</p>
-<h1 id="解引用符"><a href="#解引用符" class="headerlink" title="解引用符 *"></a>解引用符 *</h1><p>我们在声明指针变量的时候，用了这个<em>符号，但是在声明的时候，</em>并不是解引用的意思，只是表明我们要声明的是一个指针变量。而在其他地方的使用，就应该是解引用了（我也不敢说的非常绝对）。像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">printf(&quot;a is %d&quot;, *pa); // a is 10</div></pre></td></tr></table></figure><br>在这里，将输出a的值。而如果我们也要输出pa的值，也就是a这个变量的地址。 你就可以这样做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">printf(&quot;a is %d&quot;, pa);</div></pre></td></tr></table></figure></p>
-<h1 id="为什么用指针？"><a href="#为什么用指针？" class="headerlink" title="为什么用指针？"></a>为什么用指针？</h1><p>我们现在知道可以用解引用的方法来访问另一个变量。所以如果你想要访问一个变量，那你可以考虑用指针的方式。特别是你需要跨函数来访问变量的时候。</p>
-<p><strong>对，你只需要声明一个指针变量（int *pa = &a;），让它存储另一个变量的地址， 你就可以用间接访问的方式（*pa == a）， 访问到那个变量。</strong></p>
-<p>举个例子，我们写一个交换两个变量的值的函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">void swap(int *a, int *b)</div><div class="line">&#123;</div><div class="line">	int t = *a;</div><div class="line">	*a = *b;</div><div class="line">	*b = t;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">	int a = 10;</div><div class="line">	int b = 20;</div><div class="line">	printf(&quot;a is %d, b is %d.&quot;, a, b);</div><div class="line">	swap(&amp;a, &amp;b); // 在这里会把a和b的地址分别交给函数参数表里面那两个指针</div><div class="line">	printf(&quot;交换之后\n&quot;);</div><div class="line">	printf(&quot;a is %d, b is %d.&quot;, a, b);</div><div class="line"></div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br>结果：<br><img src="/images/swap.png"></p>
-<p>指针的声明和相互赋值还有解引用就是这样。 指针是一种操纵变量的手段。 一般来说，在c语言里面，只要你拥有一个变量的地址，你就可以访问这个变量的值。而对于哪些变量可以取地址，指针在一些数据结构中的使用，比如链表、二叉树，这需要你慢慢去体会。</p>
-<p>也许一开始会被不太懂指针是怎么回事，但你只需要细细琢磨就可以了。指针<strong>不是</strong>C语言的难点，事实上指针的内容其实很简单。</p>
+<p>队列是一种很重要的数据结构，因为它环绕我们生活的各个方面，这篇文章关注于：</p>
+<ul>
+<li>什么是队列？</li>
+<li>代码实现队列的基本套路</li>
+<li>队列的方法</li>
+<li>循环队列的一些想法</li>
+</ul>
+<p>我们将通过队列的数组实现来理解队列， 链表实现不是我们考虑的。</p>
 
       
     </div>
@@ -361,7 +350,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C语言-指针/" rel="tag">#C语言, 指针</a>
+            <a href="/tags/C语言-队列/" rel="tag">#C语言, 队列</a>
           
         </div>
       
@@ -370,16 +359,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/19/C语言快速浏览/" rel="next" title="C语言快速浏览">
-                <i class="fa fa-chevron-left"></i> C语言快速浏览
+              <a href="/2017/02/22/C语言之链表/" rel="next" title="C语言之单双链表">
+                <i class="fa fa-chevron-left"></i> C语言之单双链表
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/20/眼睛/" rel="prev" title="眼睛">
-                眼睛 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/27/清晨/" rel="prev" title="清晨">
+                清晨 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -494,7 +483,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指针是什么"><span class="nav-number">1.</span> <span class="nav-text">指针是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#声明一个指针变量"><span class="nav-number">2.</span> <span class="nav-text">声明一个指针变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#给指针变量的赋值"><span class="nav-number">3.</span> <span class="nav-text">给指针变量的赋值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可以在声明的时候，顺便赋值"><span class="nav-number">4.</span> <span class="nav-text">可以在声明的时候，顺便赋值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指针的使用"><span class="nav-number">5.</span> <span class="nav-text">指针的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解引用符"><span class="nav-number">6.</span> <span class="nav-text">解引用符 *</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么用指针？"><span class="nav-number">7.</span> <span class="nav-text">为什么用指针？</span></a></li></ol></div>
+              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
             
           </div>
         </section>
