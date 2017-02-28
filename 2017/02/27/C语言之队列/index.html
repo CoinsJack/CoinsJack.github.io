@@ -94,7 +94,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言之队列">
 <meta property="og:url" content="http://yoursite.com/2017/02/27/C语言之队列/index.html">
-<meta property="og:site_name" content="我爱学习, 学习使我快乐">
+<meta property="og:site_name" content="杰克的个人博客">
 <meta property="og:description" content="声明: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
 前言: 我自己认为, 对想要学习编程的人而言， C语言是一门必须要学习的语言, 但是其实就现在这个时代的话, 你没有学习C语言的绝对必要。使用别的高级语言（比如python）站在巨人的肩膀上很好， 也很爽。
 推荐书目：
@@ -106,7 +106,8 @@
 <meta property="og:image" content="http://yoursite.com/images/队列追加.png">
 <meta property="og:image" content="http://yoursite.com/images/队列出队.png">
 <meta property="og:image" content="http://yoursite.com/images/队列伪满.png">
-<meta property="og:updated_time" content="2017-02-28T15:03:10.608Z">
+<meta property="og:image" content="http://yoursite.com/images/循环队列执行结果.png">
+<meta property="og:updated_time" content="2017-02-28T16:17:05.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言之队列">
 <meta name="twitter:description" content="声明: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
@@ -134,7 +135,7 @@
   };
 </script>
 
-  <title> C语言之队列 | 我爱学习, 学习使我快乐 </title>
+  <title> C语言之队列 | 杰克的个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -165,7 +166,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">我爱学习, 学习使我快乐</span>
+      <span class="site-title">杰克的个人博客</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -192,7 +193,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -202,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -265,7 +266,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2017-02-27T18:16:33+08:00" content="2017-02-27">
               2017-02-27
             </time>
@@ -277,7 +278,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -366,6 +367,17 @@
 这样的话，队空的情况就是rear=front， 而如果rear的下一个位置是front的话，那队列就满了。</li>
 </ul>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><font size="13">代</font>码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#define QUE_SIZE 3</div><div class="line"></div><div class="line">// 结构定义</div><div class="line">struct queue</div><div class="line">&#123;</div><div class="line">	void* q[QUE_SIZE];</div><div class="line">	int front, rear;</div><div class="line">	enum queue_tag&#123; queue_empty, queue_full &#125;tag;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 初始化</div><div class="line">void queue_init(struct queue *q)</div><div class="line">&#123;</div><div class="line">	q-&gt;front = q-&gt;rear = -1;</div><div class="line">	q-&gt;tag = queue_empty;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 入队</div><div class="line">int queue_in(struct queue *q, void *p)</div><div class="line">&#123;</div><div class="line">	if (q-&gt;tag == queue_full) </div><div class="line">	&#123;</div><div class="line">		return -1;</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">	&#123;</div><div class="line">		q-&gt;rear = (q-&gt;rear + 1) % QUE_SIZE;</div><div class="line">		q-&gt;q[q-&gt;rear] = p;</div><div class="line">		if (q-&gt;rear == q-&gt;front) &#123; q-&gt;tag = queue_full; &#125;</div><div class="line">		return 0;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 出队</div><div class="line">void* queue_out(struct queue *q, void *p)</div><div class="line">&#123;</div><div class="line">	if (q-&gt;tag == queue_empty)</div><div class="line">	&#123;</div><div class="line">		return NULL;</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">	&#123;</div><div class="line">		q-&gt;front = (q-&gt;front + 1) % QUE_SIZE;</div><div class="line">		void *ret = q-&gt;q[q-&gt;front];</div><div class="line">		if (q-&gt;front == q-&gt;rear) &#123; q-&gt;tag = queue_empty; &#125;</div><div class="line">		return ret;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><mark>这段代码有问题</mark>，因为初始化的关系，如果一直进行入队操作而不进行出队操作。那么front一直是-1，而rear一直在[0, QUE_SIZE-1]的范围内, front不可能等于rear,所以这样是无法设置为队满的。入队操作可以无休止的进行，这样是错误的！！！</p>
+<p><strong>重新设计</strong>front和rear指针</p>
+<ul>
+<li>front指针指向第一个队列数据</li>
+<li>rear指向可以存放新数据的位置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#define QUE_SIZE 3</div><div class="line"></div><div class="line">enum queue_tag&#123; queue_empty, queue_full &#125;;</div><div class="line"></div><div class="line">struct queue</div><div class="line">&#123;</div><div class="line">	void* q[QUE_SIZE];</div><div class="line">	int front, rear;</div><div class="line">	enum queue_tag tag;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">void queue_init(struct queue *q)</div><div class="line">&#123;</div><div class="line">	q-&gt;front = q-&gt;rear = 0;</div><div class="line">	q-&gt;tag = queue_empty;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">int queue_in(struct queue *q, void *p)</div><div class="line">&#123;</div><div class="line">	if (q-&gt;tag == queue_full) </div><div class="line">	&#123;</div><div class="line">		return -1;</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">	&#123;</div><div class="line">		q-&gt;q[q-&gt;rear] = p;</div><div class="line">		q-&gt;rear = (q-&gt;rear + 1) % QUE_SIZE;</div><div class="line">		if (q-&gt;rear == q-&gt;front) &#123; q-&gt;tag = queue_full; &#125;</div><div class="line">		return 0;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void* queue_out(struct queue *q, void *p)</div><div class="line">&#123;</div><div class="line">	if (q-&gt;tag == queue_empty)</div><div class="line">	&#123;</div><div class="line">		return NULL;</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">	&#123;</div><div class="line">		void *ret = q-&gt;q[q-&gt;front];</div><div class="line">		q-&gt;front = (q-&gt;front + 1) % QUE_SIZE;</div><div class="line">		if (q-&gt;front == q-&gt;rear) &#123; q-&gt;tag = queue_empty; &#125;</div><div class="line">		return ret;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>进队和出队有一些改动，就是我们先进行数据操作，再进行front或者rear下一位置的计算，依此设置是否队满的标记。</p>
+<p>测试结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">	// 构造一个q指针</div><div class="line">	struct queue *q = (struct queue*)malloc(sizeof(struct queue));</div><div class="line">	queue_init(q);</div><div class="line">	// 构造一个p指针</div><div class="line">	int a = 10;</div><div class="line">	void *p = &amp;a;</div><div class="line">	// 设置一个返回值</div><div class="line">	int ret = -1;</div><div class="line"></div><div class="line">	// 预计成功的操作</div><div class="line">	ret = queue_in(q, p);</div><div class="line">	if (ret == 0)  printf(&quot;插入成功\n&quot;) ; </div><div class="line">	else printf(&quot;插入失败\n&quot;);</div><div class="line">	ret = queue_in(q, p);</div><div class="line">	if (ret == 0)  printf(&quot;插入成功\n&quot;) ; </div><div class="line">	else printf(&quot;插入失败\n&quot;);</div><div class="line">	ret = queue_in(q, p);</div><div class="line">	if (ret == 0)  printf(&quot;插入成功\n&quot;) ; </div><div class="line">	else printf(&quot;插入失败\n&quot;);</div><div class="line"></div><div class="line">	// 预计失败的操作</div><div class="line">	ret = queue_in(q, p);</div><div class="line">	if (ret == 0)  printf(&quot;插入成功\n&quot;) ; </div><div class="line">	else printf(&quot;插入失败\n&quot;);</div><div class="line">		</div><div class="line"></div><div class="line"></div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/循环队列执行结果.png"></p>
 
       
     </div>
@@ -455,10 +467,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -469,13 +481,13 @@
                src="/images/dog.jpg"
                alt="杰克" />
           <p class="site-author-name" itemprop="name">杰克</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">邮箱:coinsjack@126.com</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -483,7 +495,7 @@
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -492,7 +504,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -547,7 +559,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
