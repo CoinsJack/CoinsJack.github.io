@@ -233,6 +233,151 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/01/C语言之贪吃蛇（ncurses）/" itemprop="url">
+                  C语言之贪吃蛇(ncurses)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2017-03-01T12:56:50+08:00" content="2017-03-01">
+              2017-03-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>声明</strong>: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。</p>
+<p><strong>前言</strong>: 代码是很久之前写的，属于边想边写的那种，很混乱。</p>
+<p>推荐材料:</p>
+<ul>
+<li><a href="http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/" target="_blank" rel="external">NCURSES Programming HOWTO</a></li>
+</ul>
+<p><hr><br>贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。</p>
+<p><img src="/images/snake/end.png"></p>
+<p><font size="10">这</font>篇文章:</p>
+<ul>
+<li>介绍一些ncurses库的基础内容</li>
+<li>贪吃蛇游戏的代码解释</li>
+</ul>
+<h1 id="介绍一些ncurses库的基础内容"><a href="#介绍一些ncurses库的基础内容" class="headerlink" title="介绍一些ncurses库的基础内容"></a>介绍一些ncurses库的基础内容</h1><h2 id="ncurses"><a href="#ncurses" class="headerlink" title="ncurses"></a>ncurses</h2><p>curses是一个在命令行下面的图形函数库，而ncurses的意思是 new curses。</p>
+<h2 id="ncurses的一些函数的简单解释"><a href="#ncurses的一些函数的简单解释" class="headerlink" title="ncurses的一些函数的简单解释"></a>ncurses的一些函数的简单解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#include &lt;ncurses.h&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;	int ch;</div><div class="line"></div><div class="line">	initscr();			/* Start curses mode 		*/</div><div class="line">	raw();				/* Line buffering disabled	*/</div><div class="line">	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/</div><div class="line">	noecho();			/* Don&apos;t echo() while we do getch */</div><div class="line"></div><div class="line">    	printw(&quot;Type any character to see it in bold\n&quot;);</div><div class="line">	ch = getch();			/* If raw() hadn&apos;t been called</div><div class="line">					 * we have to press enter before it</div><div class="line">					 * gets to the program 		*/</div><div class="line">	if(ch == KEY_F(1))		/* Without keypad enabled this will */</div><div class="line">		printw(&quot;F1 Key pressed&quot;);/*  not get to us either	*/</div><div class="line">					/* Without noecho() some ugly escape</div><div class="line">					 * charachters might have been printed</div><div class="line">					 * on screen			*/</div><div class="line">	else</div><div class="line">	&#123;	printw(&quot;The pressed key is &quot;);</div><div class="line">		attron(A_BOLD);</div><div class="line">		printw(&quot;%c&quot;, ch);</div><div class="line">		attroff(A_BOLD);</div><div class="line">	&#125;</div><div class="line">	refresh();			/* Print it on to the real screen */</div><div class="line">    	getch();			/* Wait for user input */</div><div class="line">	endwin();			/* End curses mode		  */</div><div class="line"></div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是我从<a href="http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/init.html" target="_blank" rel="external"><font color="blue">这里</font></a>拿到的一个例子。</p>
+<p>我们应该注意到这个程序并没有导入标准输入输出库，而是导入了ncurses.h文件。在这个程序里面也没有使用printf（format printing），而是使用了printw这个函数(print window)就是打印到标准屏幕的意思</p>
+<ul>
+<li><b>initscr</b>：初始化屏幕，启动curses模式</li>
+<li><b>raw</b>：关闭行缓冲，一般的我们在命令行中输入数据的时候，只有当我们按下回车之后，才可以把数据提交给程序</li>
+<li><b>noecho</b>：    负责按键事务，我不太懂</li>
+<li><b>noecho</b>：    关闭回显（按下一个字符之后，屏幕并不显示。比如说在普通的情况下按下a，a会被显示在屏幕上）</li>
+</ul>
+<ul>
+<li><b>getch</b>：        获取一个字符</li>
+<li><b>attron</b>：    在后面的打印中增加打印属性，这里是粗体的意思</li>
+<li><b>attroff</b>：    移除属性</li>
+<li><b>refresh</b>：之前的printw只是打印到逻辑屏幕，而refresh函数会依据逻辑屏幕的内容，刷新到物理屏幕。</li>
+</ul>
+<ul>
+<li><b>endwin</b>：退出curses模式</li>
+</ul>
+<p>其他的可以自己慢慢去学习</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/27/清晨/" itemprop="url">
                   清晨
                 </a>
@@ -1198,7 +1343,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -1215,7 +1360,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
