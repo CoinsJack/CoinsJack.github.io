@@ -104,7 +104,7 @@ NCURSES Programming HOWTO
 贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。">
 <meta property="og:image" content="http://yoursite.com/images/snake/wellcome.png">
 <meta property="og:image" content="http://yoursite.com/images/snake/end.png">
-<meta property="og:updated_time" content="2017-03-02T03:26:49.869Z">
+<meta property="og:updated_time" content="2017-03-02T10:37:53.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言之贪吃蛇(ncurses)">
 <meta name="twitter:description" content="声明: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
@@ -337,12 +337,11 @@ NCURSES Programming HOWTO
 <ul>
 <li><a href="http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/" target="_blank" rel="external">NCURSES Programming HOWTO</a></li>
 </ul>
-<p><hr><br>贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。</p>
+<p><hr><br>贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。<br><a id="more"></a></p>
 <p><font size="10">这</font>篇文章:</p>
 <ul>
 <li>介绍一些ncurses库的基础内容</li>
-<li>贪吃蛇游戏的代码解释<a id="more"></a>
-<h1 id="介绍一些ncurses库的基础内容"><a href="#介绍一些ncurses库的基础内容" class="headerlink" title="介绍一些ncurses库的基础内容"></a>介绍一些ncurses库的基础内容</h1><img src="/images/snake/wellcome.png"><img src="/images/snake/end.png"><h2 id="ncurses"><a href="#ncurses" class="headerlink" title="ncurses"></a>ncurses</h2>curses是一个在命令行下面的图形函数库，而ncurses的意思是 new curses。</li>
+<li>贪吃蛇游戏的代码解释<h1 id="介绍一些ncurses库的基础内容"><a href="#介绍一些ncurses库的基础内容" class="headerlink" title="介绍一些ncurses库的基础内容"></a>介绍一些ncurses库的基础内容</h1><img src="/images/snake/wellcome.png"><img src="/images/snake/end.png"><h2 id="ncurses"><a href="#ncurses" class="headerlink" title="ncurses"></a>ncurses</h2>curses是一个在命令行下面的图形函数库，而ncurses的意思是 new curses。</li>
 </ul>
 <h2 id="ncurses的一些函数的简单解释"><a href="#ncurses的一些函数的简单解释" class="headerlink" title="ncurses的一些函数的简单解释"></a>ncurses的一些函数的简单解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#include &lt;ncurses.h&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;	int ch;</div><div class="line"></div><div class="line">	initscr();			/* Start curses mode 		*/</div><div class="line">	raw();				/* Line buffering disabled	*/</div><div class="line">	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/</div><div class="line">	noecho();			/* Don&apos;t echo() while we do getch */</div><div class="line"></div><div class="line">    	printw(&quot;Type any character to see it in bold\n&quot;);</div><div class="line">	ch = getch();			/* If raw() hadn&apos;t been called</div><div class="line">					 * we have to press enter before it</div><div class="line">					 * gets to the program 		*/</div><div class="line">	if(ch == KEY_F(1))		/* Without keypad enabled this will */</div><div class="line">		printw(&quot;F1 Key pressed&quot;);/*  not get to us either	*/</div><div class="line">					/* Without noecho() some ugly escape</div><div class="line">					 * charachters might have been printed</div><div class="line">					 * on screen			*/</div><div class="line">	else</div><div class="line">	&#123;	printw(&quot;The pressed key is &quot;);</div><div class="line">		attron(A_BOLD);</div><div class="line">		printw(&quot;%c&quot;, ch);</div><div class="line">		attroff(A_BOLD);</div><div class="line">	&#125;</div><div class="line">	refresh();			/* Print it on to the real screen */</div><div class="line">    	getch();			/* Wait for user input */</div><div class="line">	endwin();			/* End curses mode		  */</div><div class="line"></div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是我从<a href="http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/init.html" target="_blank" rel="external"><font color="blue">这里</font></a>拿到的一个例子。</p>
