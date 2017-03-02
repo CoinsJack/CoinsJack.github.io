@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="C语言, 队列," />
+  <meta name="keywords" content="C语言,队列," />
 
 
 
@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://yoursite.com/images/队列伪满.png">
 <meta property="og:image" content="http://yoursite.com/images/循环队列执行结果.png">
 <meta property="og:image" content="http://yoursite.com/images/队列最终测试结果.png">
-<meta property="og:updated_time" content="2017-03-01T01:35:49.642Z">
+<meta property="og:updated_time" content="2017-03-02T03:28:04.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言之队列">
 <meta name="twitter:description" content="声明: 本人只一在校学生，不足之处，谨请指教！有些内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
@@ -125,7 +125,7 @@
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -133,7 +133,7 @@
   <title> C语言之队列 | 杰克的个人博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -188,7 +188,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -198,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            文章
           </a>
         </li>
       
@@ -208,7 +218,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -261,7 +281,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2017-02-27T18:16:33+08:00" content="2017-02-27">
               2017-02-27
             </time>
@@ -273,7 +293,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -329,7 +349,7 @@
 <li>队列的方法</li>
 <li>循环队列的一些想法</li>
 </ul>
-<p>我们将通过队列的数组实现来理解队列， 链表实现不是我们考虑的。</p>
+<p>我们将通过队列的数组实现来理解队列， 链表实现不是我们考虑的。<br><a id="more"></a></p>
 <h1 id="什么是队列？"><a href="#什么是队列？" class="headerlink" title="什么是队列？"></a>什么是队列？</h1><p>队列是一种先进先出的数据结构。 举个栗子，生活中买票的时候需要排队：</p>
 <ul>
 <li>先到的人先享受售票服务</li>
@@ -397,7 +417,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C语言-队列/" rel="tag">#C语言, 队列</a>
+            <a href="/tags/C语言/" rel="tag">#C语言</a>
+          
+            <a href="/tags/队列/" rel="tag">#队列</a>
           
         </div>
       
@@ -465,10 +487,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -485,24 +507,24 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Kategorien</span>
-              
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
           
@@ -557,11 +579,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="游戏 贪吃蛇 C语言," />
+  <meta name="keywords" content="C语言,游戏,贪吃蛇," />
 
 
 
@@ -102,8 +102,9 @@ NCURSES Programming HOWTO
 NCURSES Programming HOWTO
 
 贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。">
+<meta property="og:image" content="http://yoursite.com/images/snake/wellcome.png">
 <meta property="og:image" content="http://yoursite.com/images/snake/end.png">
-<meta property="og:updated_time" content="2017-03-01T05:42:13.481Z">
+<meta property="og:updated_time" content="2017-03-02T03:26:49.869Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言之贪吃蛇(ncurses)">
 <meta name="twitter:description" content="声明: 以下内容可能会引起某些读者不适, 请小心阅读. 有些内容并没有详细介绍， 可能简单理解也是错误的， 但是这都是为了尽量简单。
@@ -113,7 +114,7 @@ NCURSES Programming HOWTO
 NCURSES Programming HOWTO
 
 贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。">
-<meta name="twitter:image" content="http://yoursite.com/images/snake/end.png">
+<meta name="twitter:image" content="http://yoursite.com/images/snake/wellcome.png">
 
 
 
@@ -126,7 +127,7 @@ NCURSES Programming HOWTO
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -134,7 +135,7 @@ NCURSES Programming HOWTO
   <title> C语言之贪吃蛇(ncurses) | 杰克的个人博客 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -189,7 +190,17 @@ NCURSES Programming HOWTO
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -199,7 +210,7 @@ NCURSES Programming HOWTO
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            文章
           </a>
         </li>
       
@@ -209,7 +220,17 @@ NCURSES Programming HOWTO
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -262,7 +283,7 @@ NCURSES Programming HOWTO
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2017-03-01T12:56:50+08:00" content="2017-03-01">
               2017-03-01
             </time>
@@ -274,7 +295,7 @@ NCURSES Programming HOWTO
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/C/" itemprop="url" rel="index">
@@ -317,13 +338,12 @@ NCURSES Programming HOWTO
 <li><a href="http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/" target="_blank" rel="external">NCURSES Programming HOWTO</a></li>
 </ul>
 <p><hr><br>贪吃蛇应该是我们这代人都玩过的游戏。而如果我们要写一个贪吃蛇最需要考虑的就是贪吃蛇是如何移动的。其实贪吃蛇的移动就是尾部的减少和头部的增加。</p>
-<p><img src="/images/snake/end.png"></p>
 <p><font size="10">这</font>篇文章:</p>
 <ul>
 <li>介绍一些ncurses库的基础内容</li>
-<li>贪吃蛇游戏的代码解释</li>
+<li>贪吃蛇游戏的代码解释<a id="more"></a>
+<h1 id="介绍一些ncurses库的基础内容"><a href="#介绍一些ncurses库的基础内容" class="headerlink" title="介绍一些ncurses库的基础内容"></a>介绍一些ncurses库的基础内容</h1><img src="/images/snake/wellcome.png"><img src="/images/snake/end.png"><h2 id="ncurses"><a href="#ncurses" class="headerlink" title="ncurses"></a>ncurses</h2>curses是一个在命令行下面的图形函数库，而ncurses的意思是 new curses。</li>
 </ul>
-<h1 id="介绍一些ncurses库的基础内容"><a href="#介绍一些ncurses库的基础内容" class="headerlink" title="介绍一些ncurses库的基础内容"></a>介绍一些ncurses库的基础内容</h1><h2 id="ncurses"><a href="#ncurses" class="headerlink" title="ncurses"></a>ncurses</h2><p>curses是一个在命令行下面的图形函数库，而ncurses的意思是 new curses。</p>
 <h2 id="ncurses的一些函数的简单解释"><a href="#ncurses的一些函数的简单解释" class="headerlink" title="ncurses的一些函数的简单解释"></a>ncurses的一些函数的简单解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#include &lt;ncurses.h&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;	int ch;</div><div class="line"></div><div class="line">	initscr();			/* Start curses mode 		*/</div><div class="line">	raw();				/* Line buffering disabled	*/</div><div class="line">	keypad(stdscr, TRUE);		/* We get F1, F2 etc..		*/</div><div class="line">	noecho();			/* Don&apos;t echo() while we do getch */</div><div class="line"></div><div class="line">    	printw(&quot;Type any character to see it in bold\n&quot;);</div><div class="line">	ch = getch();			/* If raw() hadn&apos;t been called</div><div class="line">					 * we have to press enter before it</div><div class="line">					 * gets to the program 		*/</div><div class="line">	if(ch == KEY_F(1))		/* Without keypad enabled this will */</div><div class="line">		printw(&quot;F1 Key pressed&quot;);/*  not get to us either	*/</div><div class="line">					/* Without noecho() some ugly escape</div><div class="line">					 * charachters might have been printed</div><div class="line">					 * on screen			*/</div><div class="line">	else</div><div class="line">	&#123;	printw(&quot;The pressed key is &quot;);</div><div class="line">		attron(A_BOLD);</div><div class="line">		printw(&quot;%c&quot;, ch);</div><div class="line">		attroff(A_BOLD);</div><div class="line">	&#125;</div><div class="line">	refresh();			/* Print it on to the real screen */</div><div class="line">    	getch();			/* Wait for user input */</div><div class="line">	endwin();			/* End curses mode		  */</div><div class="line"></div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是我从<a href="http://www.tldp.org/HOWTO/NCURSES-Programming-HOWTO/init.html" target="_blank" rel="external"><font color="blue">这里</font></a>拿到的一个例子。</p>
 <p>我们应该注意到这个程序并没有导入标准输入输出库，而是导入了ncurses.h文件。在这个程序里面也没有使用printf（format printing），而是使用了printw这个函数(print window)就是打印到标准屏幕的意思</p>
@@ -343,6 +363,16 @@ NCURSES Programming HOWTO
 <li><b>endwin</b>：退出curses模式</li>
 </ul>
 <p>其他的可以自己慢慢去学习</p>
+<h2 id="ncurses库的安装和使用"><a href="#ncurses库的安装和使用" class="headerlink" title="ncurses库的安装和使用"></a>ncurses库的安装和使用</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>如果你是使用debian系列的linux发行版，例如ubuntu，应该直接键入命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libncurses5-dev</div></pre></td></tr></table></figure>就可以了。<br>如果是别的系列的版本，建议下载源码包，编译安装。或者百度搜索正确的答案。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>一般的，只需要在gcc编译命令的后面加上-lncurses就可以正确导入ncurses库了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gcc -o demo demo.c -std=c99 -lncurses</div></pre></td></tr></table></figure>-std=c99的意思是使用c99的标准来编译代码。<br>没有使用过命令行编译操作的同学需要自己去学习。</p>
+<h1 id="贪吃蛇的代码解释"><a href="#贪吃蛇的代码解释" class="headerlink" title="贪吃蛇的代码解释"></a>贪吃蛇的代码解释</h1><h2 id="从哪里得到"><a href="#从哪里得到" class="headerlink" title="从哪里得到"></a>从哪里得到</h2><p>点击<a href="https://codeload.github.com/CoinsJack/my_snake_game/zip/master" target="_blank" rel="external">这里</a>。这份代码是我写的，也确实写的不好。但也可以随便看看。</p>
+<h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a><font size="8">代</font>码结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|-- hungry_snake // 可执行文件，</div><div class="line">|-- main.c</div><div class="line">|-- snake.c</div><div class="line">|-- snake.h</div><div class="line">`-- wellcome.h</div><div class="line"></div><div class="line">0 directories, 5 files</div></pre></td></tr></table></figure>
+<p><strong>hungry_snake</strong>是一个可执行文件，在debian下编译的，在centos下面可能需要重新编译。<br><strong>main.c</strong>是程序的主要逻辑部分。<br><strong>wellcome.h</strong>包含了欢迎界面的代码实现。</p>
+<h2 id="snake-h"><a href="#snake-h" class="headerlink" title="snake.h"></a>snake.h</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * snake.h</div><div class="line"> */</div><div class="line">#ifndef SNAKE_H</div><div class="line">#define SNAKE_H</div><div class="line">#include &lt;ncurses.h&gt;</div><div class="line"></div><div class="line">// 这个枚举类型我其实没有用</div><div class="line">typedef enum state</div><div class="line">  &#123;</div><div class="line">    goleft,</div><div class="line">    goright,</div><div class="line">    goup,</div><div class="line">    godown</div><div class="line">  &#125;state;</div><div class="line"></div><div class="line">// 这个是蛇的一节，也就是一个坐标</div><div class="line">typedef struct body</div><div class="line">&#123;</div><div class="line">  int y;</div><div class="line">  int x;</div><div class="line">  struct body *prev;</div><div class="line">  struct body *next;</div><div class="line">&#125;Body ,*Pbody;</div><div class="line"></div><div class="line">// 这个是蛇的结构定义，有一个虚蛇头，蛇头和蛇尾，还有蛇的长度啊，运动状态啊</div><div class="line">typedef struct snake</div><div class="line">&#123;</div><div class="line">  Pbody vir_head;</div><div class="line">  Pbody head;</div><div class="line">  Pbody tail;</div><div class="line">  int length;</div><div class="line">  state movement;					// 我没有用</div><div class="line"></div><div class="line">  char uping;</div><div class="line">  char downing;</div><div class="line">  char lefting;</div><div class="line">  char righting;</div><div class="line">&#125;Snake, *Psnake;</div><div class="line"></div><div class="line">int FOOD[1000][1000]; 				// 食物坐标,标记哪个位置有食物</div><div class="line">int food_num; 						// 食物数量</div><div class="line"></div><div class="line">/*</div><div class="line">** body part</div><div class="line">*/</div><div class="line">Pbody init_body();					 // 初始化蛇身</div><div class="line">void add_body(Pbody jack, Pbody bd); // 增加一节</div><div class="line">Pbody bd(int lines,int cols);		// 构造一个蛇节</div><div class="line"></div><div class="line">void print_snake(Pbody jack);	// 显示那条蛇</div><div class="line"></div><div class="line">void print_bd(Pbody bd);	// 显示蛇节</div><div class="line"></div><div class="line">Pbody get_head(Pbody jack);	// 得到蛇头部节点</div><div class="line"></div><div class="line">Pbody add_head(Pbody oldhead,Pbody newhead); // 增加节点到头部</div><div class="line"></div><div class="line">Pbody del_tail(Pbody jack); // 删除蛇尾</div><div class="line"></div><div class="line">Pbody get_tail(Pbody jack); // 得到蛇尾节点指针</div><div class="line"></div><div class="line"></div><div class="line">/*</div><div class="line">** snake part</div><div class="line">*/</div><div class="line"></div><div class="line">Psnake init_snake();	//初始化蛇</div><div class="line"></div><div class="line">int snake_go_right(Psnake snake);	// 蛇的移动</div><div class="line"></div><div class="line">int snake_go_left(Psnake jack);</div><div class="line"></div><div class="line">void show_snake(Psnake jack);	// 屏幕上显示蛇</div><div class="line"></div><div class="line">void init_show_snake(Psnake jack); // 忘了</div><div class="line"></div><div class="line">int snake_go_down(Psnake jack);	// 蛇的移动</div><div class="line"></div><div class="line">int snake_go_up(Psnake jack);</div><div class="line"></div><div class="line">int snake_can_move(Psnake jack, char ch); // 判断蛇能否往目标方向移动</div><div class="line"></div><div class="line">int body_in_snake(int row, int col, Psnake jack); // 判断蛇身是否覆盖坐标</div><div class="line"></div><div class="line">/* food part */</div><div class="line"></div><div class="line">void putfood(Psnake jack); // 随机投放食物</div><div class="line"></div><div class="line">int count_food(); // 食物技术</div><div class="line"></div><div class="line">/* game_over */</div><div class="line"></div><div class="line">void game_over(Psnake jack); // 游戏结束</div><div class="line">#endif // SNAKE_H</div></pre></td></tr></table></figure>
+<p>这里有一些结构定义和函数声明。</p>
+<h2 id="main-c"><a href="#main-c" class="headerlink" title="main.c"></a>main.c</h2><p>下面是程序主体逻辑部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div></pre></td><td class="code"><pre><div class="line">#include &lt;unistd.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &quot;snake.h&quot;</div><div class="line">#include &lt;ncurses.h&gt;</div><div class="line">#include &quot;wellcome.h&quot;</div><div class="line">#include &lt;pthread.h&gt;</div><div class="line"></div><div class="line"></div><div class="line">int ch;</div><div class="line">int GAMEOVER;</div><div class="line">/*</div><div class="line">void get_command(void *i)</div><div class="line">&#123;</div><div class="line">  ch = getch();</div><div class="line">&#125;</div><div class="line">*/</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">  initscr();</div><div class="line">  start_color();</div><div class="line">  keypad(stdscr,TRUE);</div><div class="line">  curs_set(0);</div><div class="line">  noecho();</div><div class="line">  halfdelay(4);</div><div class="line">  init_pair(1,COLOR_WHITE,COLOR_BLACK);</div><div class="line">  init_pair(2,COLOR_BLACK,COLOR_WHITE);</div><div class="line"></div><div class="line">  print_snake_logo(stdscr);</div><div class="line">  mvprintw(LINES-1,COLS-20,&quot;Producted by Jack&quot;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">  mvprintw(LINES-4,(COLS-21)/2,&quot;|-&gt; START&quot;);</div><div class="line">  printw(&quot; (? for help)&quot;);</div><div class="line"></div><div class="line"></div><div class="line">  refresh();</div><div class="line">  int choice;</div><div class="line">  char goout = 0;</div><div class="line">  while (!goout)&#123;</div><div class="line"></div><div class="line">  switch (choice = getch() )&#123;</div><div class="line">  case &apos;q&apos;:</div><div class="line">    endwin();</div><div class="line">    return 0;</div><div class="line">  case &apos;e&apos;:</div><div class="line">    goout = 1;</div><div class="line">    break;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  /*</div><div class="line">  pthread_t id;</div><div class="line">  pthread_create(&amp;id,NULL,get_command,NULL);</div><div class="line">  */</div><div class="line">  </div><div class="line">  Psnake jack = init_snake();</div><div class="line">  init_show_snake(jack);</div><div class="line">  ch = mvgetch(LINES-1,0);</div><div class="line">  srand((unsigned)time(0));</div><div class="line">  </div><div class="line">  for (int i = 0; i&lt;10; i++)</div><div class="line">    putfood(jack);</div><div class="line">  refresh();</div><div class="line">  int noout = 1;</div><div class="line">  int c = 0;</div><div class="line">  while(noout)&#123;</div><div class="line">	ch = getch();</div><div class="line">  switch (ch)&#123;</div><div class="line"></div><div class="line">  case KEY_RIGHT:</div><div class="line">    c = snake_go_right(jack);</div><div class="line">    if ( c == -1)&#123;</div><div class="line">	noout = 0;</div><div class="line">	GAMEOVER = 1;</div><div class="line">	break;</div><div class="line">    &#125;</div><div class="line">      continue;</div><div class="line"></div><div class="line">  case KEY_DOWN :</div><div class="line">       c = snake_go_down(jack);</div><div class="line">      if ( c == -1)&#123;</div><div class="line">	noout = 0;</div><div class="line">	GAMEOVER = 1;</div><div class="line">	break;</div><div class="line">      &#125;</div><div class="line">      continue;</div><div class="line"></div><div class="line">  case KEY_LEFT:</div><div class="line">    c = snake_go_left(jack);</div><div class="line">      if ( c == -1)&#123;</div><div class="line">	noout = 0;</div><div class="line">	GAMEOVER = 1;</div><div class="line">	break;</div><div class="line">      &#125;</div><div class="line">      continue;</div><div class="line"></div><div class="line">  case KEY_UP:</div><div class="line">    c = snake_go_up(jack);</div><div class="line">      if ( c == -1)&#123;</div><div class="line">	noout = 0;</div><div class="line">	GAMEOVER = 1;</div><div class="line">	break;</div><div class="line">      &#125;</div><div class="line">      continue;</div><div class="line">  case &apos;q&apos;:</div><div class="line">    game_over(jack);</div><div class="line">    endwin();</div><div class="line">    return 0;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (jack-&gt;righting)&#123;</div><div class="line">    c = snake_go_right(jack);</div><div class="line">    if (c == -1)&#123;</div><div class="line">      GAMEOVER = 1;</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  else if (jack-&gt;lefting)&#123;</div><div class="line">    c = snake_go_left(jack);</div><div class="line">    if (c == -1)&#123;</div><div class="line">      GAMEOVER = 1;</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  else if(jack-&gt;uping)&#123;</div><div class="line">    c = snake_go_up(jack);</div><div class="line">    if (c == -1)&#123;</div><div class="line">      GAMEOVER = 1;</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  else if(jack-&gt;downing)&#123;</div><div class="line">    c = snake_go_down(jack);</div><div class="line">    if (c == -1)&#123;</div><div class="line">      GAMEOVER = 1;</div><div class="line">      break;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if (food_num &lt; 30)</div><div class="line">    putfood(jack);</div><div class="line">  mvprintw(LINES-1,2,&quot;-- socre %d --&quot;,jack-&gt;length);</div><div class="line">  refresh();</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  if(GAMEOVER)</div><div class="line">    game_over(jack);</div><div class="line">    </div><div class="line">  refresh();</div><div class="line">  </div><div class="line">  endwin();</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gcc -o snake.out snake.h snake.c main.c wellcome.h -lncurses -std=c99</div></pre></td></tr></table></figure>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>这份代码写的太差劲，所以我也没有也不想过多的去讲它。</p>
 
       
     </div>
@@ -364,7 +394,11 @@ NCURSES Programming HOWTO
       
         <div class="post-tags">
           
-            <a href="/tags/游戏-贪吃蛇-C语言/" rel="tag">#游戏 贪吃蛇 C语言</a>
+            <a href="/tags/C语言/" rel="tag">#C语言</a>
+          
+            <a href="/tags/游戏/" rel="tag">#游戏</a>
+          
+            <a href="/tags/贪吃蛇/" rel="tag">#贪吃蛇</a>
           
         </div>
       
@@ -428,10 +462,10 @@ NCURSES Programming HOWTO
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -448,24 +482,24 @@ NCURSES Programming HOWTO
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">8</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Kategorien</span>
-              
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
               </a>
             </div>
           
@@ -493,7 +527,7 @@ NCURSES Programming HOWTO
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍一些ncurses库的基础内容"><span class="nav-number">1.</span> <span class="nav-text">介绍一些ncurses库的基础内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ncurses"><span class="nav-number">1.1.</span> <span class="nav-text">ncurses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ncurses的一些函数的简单解释"><span class="nav-number">1.2.</span> <span class="nav-text">ncurses的一些函数的简单解释</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍一些ncurses库的基础内容"><span class="nav-number">1.</span> <span class="nav-text">介绍一些ncurses库的基础内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ncurses"><span class="nav-number">1.1.</span> <span class="nav-text">ncurses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ncurses的一些函数的简单解释"><span class="nav-number">1.2.</span> <span class="nav-text">ncurses的一些函数的简单解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ncurses库的安装和使用"><span class="nav-number">1.3.</span> <span class="nav-text">ncurses库的安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贪吃蛇的代码解释"><span class="nav-number">2.</span> <span class="nav-text">贪吃蛇的代码解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从哪里得到"><span class="nav-number">2.1.</span> <span class="nav-text">从哪里得到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码结构"><span class="nav-number">2.2.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#snake-h"><span class="nav-number">2.3.</span> <span class="nav-text">snake.h</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-c"><span class="nav-number">2.4.</span> <span class="nav-text">main.c</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">2.5.</span> <span class="nav-text">编译</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
@@ -520,11 +554,11 @@ NCURSES Programming HOWTO
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
