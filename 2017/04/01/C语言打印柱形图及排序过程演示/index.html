@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="画画," />
+  <meta name="keywords" content="C语言,排序,柱形图," />
 
 
 
@@ -84,15 +84,36 @@
 
 
 
+<meta name="description" content="我们今天来学习一个把数组元素打印成柱形图的技巧，结果如下：
+
+思考过程如果我们把一个数组的每个元素用柱形图的方式打印出来，里面的各个元素是
+1, 2, 3, 4, 5
+我们有一个平面直角坐标系，那么、坐标系里面的某个点的纵坐标意义就是这个点在某条垂直于y轴的直线上
+一图胜千言：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="眼睛">
-<meta property="og:url" content="http://yoursite.com/2017/02/20/眼睛/index.html">
+<meta property="og:title" content="C语言打印柱形图及排序过程演示">
+<meta property="og:url" content="http://yoursite.com/2017/04/01/C语言打印柱形图及排序过程演示/index.html">
 <meta property="og:site_name" content="杰克的个人博客">
-<meta property="og:image" content="http://yoursite.com/images/眼睛.jpg">
-<meta property="og:updated_time" content="2017-03-02T02:20:09.415Z">
+<meta property="og:description" content="我们今天来学习一个把数组元素打印成柱形图的技巧，结果如下：
+
+思考过程如果我们把一个数组的每个元素用柱形图的方式打印出来，里面的各个元素是
+1, 2, 3, 4, 5
+我们有一个平面直角坐标系，那么、坐标系里面的某个点的纵坐标意义就是这个点在某条垂直于y轴的直线上
+一图胜千言：">
+<meta property="og:image" content="http://yoursite.com/images/colpic/colpic.png">
+<meta property="og:image" content="http://yoursite.com/images/colpic/basic.png">
+<meta property="og:image" content="http://yoursite.com/images/colpic/bubbleshow.gif">
+<meta property="og:image" content="http://yoursite.com/images/colpic/qsortshow.gif">
+<meta property="og:updated_time" content="2017-04-01T05:58:04.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="眼睛">
-<meta name="twitter:image" content="http://yoursite.com/images/眼睛.jpg">
+<meta name="twitter:title" content="C语言打印柱形图及排序过程演示">
+<meta name="twitter:description" content="我们今天来学习一个把数组元素打印成柱形图的技巧，结果如下：
+
+思考过程如果我们把一个数组的每个元素用柱形图的方式打印出来，里面的各个元素是
+1, 2, 3, 4, 5
+我们有一个平面直角坐标系，那么、坐标系里面的某个点的纵坐标意义就是这个点在某条垂直于y轴的直线上
+一图胜千言：">
+<meta name="twitter:image" content="http://yoursite.com/images/colpic/colpic.png">
 
 
 
@@ -110,7 +131,7 @@
   };
 </script>
 
-  <title> 眼睛 | 杰克的个人博客 </title>
+  <title> C语言打印柱形图及排序过程演示 | 杰克的个人博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +271,7 @@
             
             
               
-                眼睛
+                C语言打印柱形图及排序过程演示
               
             
           </h1>
@@ -262,8 +283,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-20T20:41:53+08:00" content="2017-02-20">
-              2017-02-20
+            <time itemprop="dateCreated" datetime="2017-04-01T13:21:17+08:00" content="2017-04-01">
+              2017-04-01
             </time>
           </span>
 
@@ -276,8 +297,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/画画/" itemprop="url" rel="index">
-                    <span itemprop="name">画画</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C</span>
                   </a>
                 </span>
 
@@ -309,7 +330,82 @@
       
 
       
-        <p><img src="/images/眼睛.jpg"></p>
+        <p>我们今天来学习一个把数组元素打印成柱形图的技巧，结果如下：</p>
+<p><img src="/images/colpic/colpic.png"></p>
+<h1 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h1><p>如果我们把一个数组的每个元素用柱形图的方式打印出来，里面的各个元素是</p>
+<pre><code>1, 2, 3, 4, 5
+</code></pre><p>我们有一个平面直角坐标系，那么、坐标系里面的某个点的纵坐标意义就是这个点在某条垂直于y轴的直线上</p>
+<p>一图胜千言：</p>
+<p><img src="/images/colpic/basic.png"><br><a id="more"></a></p>
+<p>所以，我们可以用一个循环来表示y轴</p>
+<pre><code>for (int i = 20; i &gt; 0; --i)
+</code></pre><p>这个东西看起来就像是一个长度只有20个长度的y轴</p>
+<p>当我们的数据大于等于这个y轴坐标的时候，我们的柱形图就应该“存在”了。（这里我找不到更好的表述）</p>
+<p>下面我们来看</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code>int print_array(int *array, int size)
+{
+        system(&quot;clear&quot;);
+        for (int i = 20; i &gt; 0; --i) { // 外循环是y轴
+                for (int j = 0; j &lt; size; j++) { // 遍历访问每一个数组元素
+                        // 如果数组元素大于或者等于当前y轴坐标
+                        if (array[j] == i) 
+                        {
+                                printf(&quot;%03d&quot;, i);
+                        }
+                        else if (array[j] &gt; i){
+                                printf(&quot;###&quot;);
+                        }
+                        else 
+                                printf(&quot;   &quot;);
+                        // 处理完一个元素之后，打印一个空格来隔开。
+                        printf(&quot; &quot;);
+                }
+                putchar(&apos;\n&apos;);
+        }
+
+        return 0;
+
+}
+</code></pre><h1 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h1><pre><code>                005 
+            004 ### 
+        003 ### ### 
+    002 ### ### ### 
+001 ### ### ### ### 
+jack@alchemy:~/C$ 
+</code></pre><h1 id="结合排序算法"><a href="#结合排序算法" class="headerlink" title="结合排序算法"></a>结合排序算法</h1><h2 id="结合冒泡排序算法"><a href="#结合冒泡排序算法" class="headerlink" title="结合冒泡排序算法"></a>结合冒泡排序算法</h2><p>在每一次交换之后，我们进行一次屏幕的清空（windows下面可以用CLS命令， linux下面可以用clear命令），然后再进行数组的打印。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre><code>int bubble_print(int *a, int size)
+{
+        int i = 0, j = 0;
+        int changed = 0;
+        for (i = 0; i &lt; size-1; ++i) // i表示着倒数第几个位置成为最大（小）值， 
+        {
+                changed = 0;
+                for(j = 0; j &lt; size-i; ++j) // 因为i这个计数是从0开始的，i的最大值小于数据长度-1，j就能走到倒数数据长度-1个位置， 也就是j能走到正数第二个位置
+                // 随着i的值的变大，j走的范围在减小
+                {
+                    if (a[j] &gt; a[j+1]) // 这里我们想要一个升序的结果，如果前面的比后面的大，就交换数据
+                    {
+                        int tmp = a[j];
+                        a[j] = a[j+1];
+                        a[j+1] = tmp;
+                        changed = 1;
+
+                    }
+                        print_array(a, size); // 在这里进行了打印
+                        usleep(300000);
+                }
+                        if (!changed) {
+                                break;
+                        }
+
+        }
+        return 0;
+
+}
+</code></pre><h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="/images/colpic/bubbleshow.gif"></p>
+<h2 id="请读者自己去尝试一下快排的演示"><a href="#请读者自己去尝试一下快排的演示" class="headerlink" title="请读者自己去尝试一下快排的演示"></a>请读者自己去尝试一下快排的演示</h2><p>这里是快排效果</p>
+<p><img src="/images/colpic/qsortshow.gif"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>流程控制其实就可以控制很多自然的东西。 编程虽然是数学计算，但不仅仅是数学计算。</p>
 
       
     </div>
@@ -331,7 +427,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/画画/" rel="tag">#画画</a>
+            <a href="/tags/C语言/" rel="tag">#C语言</a>
+          
+            <a href="/tags/排序/" rel="tag">#排序</a>
+          
+            <a href="/tags/柱形图/" rel="tag">#柱形图</a>
           
         </div>
       
@@ -340,17 +440,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/20/C语言之指针/" rel="next" title="C语言之指针">
-                <i class="fa fa-chevron-left"></i> C语言之指针
+              <a href="/2017/03/11/C语言之快速排序和冒泡排序/" rel="next" title="C语言之快速排序和冒泡排序">
+                <i class="fa fa-chevron-left"></i> C语言之快速排序和冒泡排序
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/02/22/C语言之链表/" rel="prev" title="C语言之单双链表">
-                C语言之单双链表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -464,7 +560,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#思考过程"><span class="nav-number">1.</span> <span class="nav-text">思考过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行结果"><span class="nav-number">3.</span> <span class="nav-text">执行结果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结合排序算法"><span class="nav-number">4.</span> <span class="nav-text">结合排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结合冒泡排序算法"><span class="nav-number">4.1.</span> <span class="nav-text">结合冒泡排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">4.1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">4.1.2.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请读者自己去尝试一下快排的演示"><span class="nav-number">4.2.</span> <span class="nav-text">请读者自己去尝试一下快排的演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>

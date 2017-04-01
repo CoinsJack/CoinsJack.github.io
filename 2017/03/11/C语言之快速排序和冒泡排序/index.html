@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://yoursite.com/images/sort/qsort2.PNG">
 <meta property="og:image" content="http://yoursite.com/images/sort/qsort3.PNG">
 <meta property="og:image" content="http://yoursite.com/images/sort/qsort4.PNG">
-<meta property="og:updated_time" content="2017-03-11T05:38:21.466Z">
+<meta property="og:updated_time" content="2017-03-19T02:50:41.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言之快速排序和冒泡排序">
 <meta name="twitter:description" content="前言：    并不能一文就解释清楚排序到底是怎么一回事，我所有几乎文章都需要和别的材料配合才比较容易产生理解。
@@ -380,7 +380,7 @@
 </code></pre><p>让倒数第四个位置获得应有的数据：</p>
 <pre><code>0，1，2 // 在这样的原始数据下，此时排序已经完成了， 0，1，2，3，5，7 
 // 但是我们先让它干下去
-</code></pre><p>让倒数第三： …<br>让倒数第二： …<br>如果倒数第二也在正确的位置，那么此时倒数第一个位置已经在应该在的位置了 :-)</p>
+</code></pre><p>让正数第三： …<br>让正数第二： …<br>如果正数第二也拥有，那么此时正数第一个位置也应该拥有应有的数据了，也就是拥有最小的数据 :-)</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include &lt;stdio.h&gt;
 
 int main(void)
@@ -557,6 +557,10 @@ void qsort(int *p, int left, int right)
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/04/01/C语言打印柱形图及排序过程演示/" rel="prev" title="C语言打印柱形图及排序过程演示">
+                C语言打印柱形图及排序过程演示 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -623,7 +627,7 @@ void qsort(int *p, int left, int right)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -640,7 +644,7 @@ void qsort(int *p, int left, int right)
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
