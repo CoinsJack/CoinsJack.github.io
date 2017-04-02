@@ -1,0 +1,810 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="深度优先算法,ncurses,迷宫游戏," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前言：
+阅读此篇文章要求读者具有一些基础的ncurses库了解
+深度优先算法是将各种情况分配一定的优先级，然后在某个问题出现的时候，选择优先级高的情况进行处理，特定情况下进行回退，选择优先级次之的情况进行尝试. 点击这里可以得到源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度优先算法和Ncurses - 迷宫">
+<meta property="og:url" content="http://yoursite.com/2017/04/02/深度优先算法和Ncurses/index.html">
+<meta property="og:site_name" content="杰克的个人博客">
+<meta property="og:description" content="前言：
+阅读此篇文章要求读者具有一些基础的ncurses库了解
+深度优先算法是将各种情况分配一定的优先级，然后在某个问题出现的时候，选择优先级高的情况进行处理，特定情况下进行回退，选择优先级次之的情况进行尝试. 点击这里可以得到源码">
+<meta property="og:image" content="http://yoursite.com/images/dfs_myth/crack_myth.gif">
+<meta property="og:updated_time" content="2017-04-02T06:06:18.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深度优先算法和Ncurses - 迷宫">
+<meta name="twitter:description" content="前言：
+阅读此篇文章要求读者具有一些基础的ncurses库了解
+深度优先算法是将各种情况分配一定的优先级，然后在某个问题出现的时候，选择优先级高的情况进行处理，特定情况下进行回退，选择优先级次之的情况进行尝试. 点击这里可以得到源码">
+<meta name="twitter:image" content="http://yoursite.com/images/dfs_myth/crack_myth.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 深度优先算法和Ncurses - 迷宫 | 杰克的个人博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杰克的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">My head's under water, but I'm breathing fine.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深度优先算法和Ncurses - 迷宫
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-02T12:53:53+08:00" content="2017-04-02">
+              2017-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>前言：</strong></p>
+<p>阅读此篇文章要求读者具有一些基础的ncurses库了解</p>
+<p>深度优先算法是将各种情况分配一定的优先级，然后在某个问题出现的时候，选择优先级高的情况进行处理，特定情况下进行回退，选择优先级次之的情况进行尝试. 点击<a href="https://github.com/CoinsJack/crackTheMyth" target="_blank" rel="external">这里</a>可以得到源码</p>
+<a id="more"></a>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/dfs_myth/crack_myth.gif"></h2><h1 id="程序主体思路"><a href="#程序主体思路" class="headerlink" title="程序主体思路"></a>程序主体思路</h1><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li>创建一个迷宫</li>
+<li>创建一个人</li>
+<li>把人放到迷宫的入口</li>
+<li>深度优先算法控制人，走到出口。</li>
+<li>退出</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include &lt;ncurses.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+
+
+// this is the myth map.
+char myth[][31] = {
+
+    &quot;******************************&quot;, 
+    &quot;              *          *   *&quot;,
+    &quot;*  ****       *        *    -&gt;&quot;,
+    &quot;*     *       * ******   *****&quot;,
+    &quot;********      *              *&quot;,
+    &quot;*   **    *   *  * ******** **&quot;,
+    &quot;* * *       *    *           *&quot;,
+    &quot;* * ******* *    *  ******** *&quot;,
+    &quot;* *         *    *           *&quot;,
+    &quot;* * *  *    *    *    ***    *&quot;,        
+    &quot;******************************&quot;
+};
+</code></pre><p>这里用一个字符数组来存储迷宫的信息</p>
+<pre><code>char book[12][30] = {0};
+</code></pre><p>book数组负责这个点有没有走过的标记</p>
+<pre><code>int myth_starty = 0;
+int myth_startx = 0;
+</code></pre><p>myth_starty, myth_startx 分别负责在myth WINDOW里面的迷宫左上角起点坐标的y和x， 因为在ncurses里面，的坐标和我们的迷宫数组下标之间需要一个翻译。</p>
+<pre><code>// this is a person struct.
+typedef struct _person
+{
+        int x;
+        int y;
+    int step;
+
+}Person;
+</code></pre><p>这是一个结构体，来存放player的信息</p>
+<pre><code>// this a struct for a point in game.
+typedef struct _loc
+{
+    int x, y;
+}MLoc;
+</code></pre><p>一个包装了y和x两个int值的结构体， 没怎么用</p>
+<pre><code>// this function handle the person&apos;s moving.
+void moveTo(WINDOW *w, Person *p, int y, int x);
+</code></pre><p>这个函数负责把一个Person移动到某个窗口w的y行x列</p>
+<pre><code>// this function return a person pointer.
+Person* con_person();
+</code></pre><p>这个函数负责construct一个person，返回Person指针</p>
+<pre><code>// this function destroy a person.
+void destroy_person(Person *p);
+</code></pre><p>这个函数释放Person指针p指向的堆内存</p>
+<pre><code>// this funcion creates a myth in the middle of the target window.
+int create_myth(WINDOW *target);
+</code></pre><p>这个函数负责打印迷宫到窗口target的中心</p>
+<pre><code>//
+void go_through(WINDOW *, Person *);
+</code></pre><p>这个函数就是负责让小人走出迷宫</p>
+<pre><code>int main()
+{
+    // preparation for this program.
+    initscr();
+    clear();
+    curs_set(0); // hide the cursor
+    noecho(); // no echo.
+    cbreak(); // close the line buffer.
+</code></pre><p>ncurses程序初始化准备部分</p>
+<pre><code>init_pair(1, COLOR_RED, COLOR_BLACK);
+init_pair(2, COLOR_BLACK, COLOR_WHITE);
+</code></pre><p>颜色效果不太好，然后就取消掉了。这两行代码无用</p>
+<pre><code>// make a border for the standred screen.
+wborder(stdscr,  &apos;|&apos;, &apos;|&apos;, &apos;-&apos;, &apos;-&apos;, &apos;*&apos;, &apos;*&apos;, &apos;*&apos;, &apos;*&apos;);
+refresh();
+</code></pre><p>给标准屏幕添加一个边框</p>
+<pre><code>// two var for the max size of the stdscr.
+int scry, scrx;
+getmaxyx(stdscr, scry, scrx);
+</code></pre><p>// 把标准屏幕的宽度和高度存放在scrx，scry里面</p>
+<pre><code>// use a LOC var for an area. y stands for height, x stands for width.
+MLoc title_part;
+title_part.y =     (scry-15)/2 + 4;
+title_part.x =  (scrx-50)/2;    
+</code></pre><p>// 计算出title_part的大小， 用来存放一些程序信息</p>
+<pre><code>/* print some game info */
+char *title = &quot; GAME: Crack the myth &quot;;
+char *author = &quot; AUTHOR: Jack &quot;;
+char *version = &quot; VERSION: 1.0.1 &quot;;
+
+
+
+attron(A_REVERSE);
+mvprintw((title_part.y - 3)/2, (scrx-strlen(title))/2, &quot;%s&quot;, title);
+attroff(A_REVERSE);    
+
+attron(A_UNDERLINE);
+mvprintw((title_part.y - 3)/2 + 1, (scrx-strlen(version))/2, &quot;%s&quot;, version);
+mvprintw((title_part.y - 3)/2 + 2, (scrx-strlen(author))/2, &quot;%s&quot;, author);
+attroff(A_UNDERLINE);
+
+refresh();
+</code></pre><p>把名称、作者信息、版本号打印在游戏界面中</p>
+<pre><code>// myth is a window for the myth map.
+WINDOW *w_myth = newwin(15, 50, (scry-15)/2 + 4, (scrx-50)/2 - 20);
+
+// we called the function which we defined to show the myth map
+create_myth(w_myth);
+wborder(w_myth,  &apos;|&apos;, &apos;|&apos;, &apos;-&apos;, &apos;-&apos;, &apos;+&apos;, &apos;+&apos;, &apos;+&apos;, &apos;+&apos;);
+// 
+mvwprintw(stdscr,  (scry-15)/2 + 4 + 6, (scrx-50)/2 - 20 + 60, &quot;Cracking...&quot;);
+refresh();
+wrefresh(w_myth);
+</code></pre><p>创建一个窗口来存放迷宫地图，并且给其添加边界</p>
+<pre><code>// put a person on myth.
+Person *player = con_person();
+moveTo(w_myth, player, 1, 0);
+
+
+getchar();
+</code></pre><p>随便得到一个字符之后，开始进行寻路</p>
+<pre><code>    go_through(w_myth, player);
+
+
+    // get a character then exit.
+    getchar();
+    endwin();
+
+    return 0;
+}
+</code></pre><p>以上就是程序的全部流程，不难 对吗？</p>
+<h1 id="深度优先算法"><a href="#深度优先算法" class="headerlink" title="深度优先算法"></a>深度优先算法</h1><h2 id="过程-1"><a href="#过程-1" class="headerlink" title="过程"></a>过程</h2><p>我们测试每一个点，如果当前位置在终点位置上，那么我们就直接结束程序。或者我们就来计算下一个点的坐标。下一个点的坐标可以是右边的、下边的、左边的、上边的、（东南西北），我们在这里用一个next二维数组来处理，如果是下一个点是邻接的右边的点，那么y坐标不变，x坐标+1， 所以在next数组里面对应的是{0, 1} ( {y, x} ) 这样。 </p>
+<p>在后面用for循环遍历每一种情况的时候，会用到这个next数组。</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>void go_through(WINDOW *w, Person *p)
+{
+
+    int cy, cx;
+    int ny, nx;
+
+    if ( p-&gt;y == 2 &amp;&amp; p-&gt;x == 29) 
+    {
+        attron(A_REVERSE);
+        mvwprintw(stdscr,  (LINES-15)/2 + 4 + 6, (COLS-50)/2 - 20 + 60, &quot;    DONE   &quot;);
+        attroff(A_REVERSE);
+        wrefresh(stdscr);
+        wrefresh(stdscr);
+        getchar();
+        endwin();
+        exit(0);
+    }
+    int next[4][2] = 
+        {
+            {0, 1},
+            {1, 0},
+            {0, -1},
+            {-1, 0},
+        };
+
+
+
+    for (int i = 0; i &lt; 4; ++i) 
+    {
+        // 计算下一个点的坐标
+        ny = p-&gt;y + next[i][0]; 
+        nx = p-&gt;x + next[i][1];
+
+        // 保存当前坐标
+        cy = p-&gt;y;
+        cx = p-&gt;x;
+
+        // 如果下个坐标值非法（越界），那么就跳过这个尝试
+        // 在这里，每个循环代表的是每个方向上的尝试
+        if (ny &gt; 10 || ny &lt; 0 || nx &gt; 29 || nx &lt; 0)
+        {
+            continue;
+        }
+
+        // 如果下一个坐标没有走过，并且不是墙
+        if (book[ny][nx] == 0 &amp;&amp; myth[ny][nx] != &apos;*&apos;)
+        {
+            // 标记走过了这个点
+            book[ny][nx] = 1;
+            // 移动Person p走到这个点
+            moveTo(w, p, ny, nx);
+            // 睡100毫秒
+            usleep(100000);
+            // 以新的点作为起点进行尝试， 这就是递归算法。
+            go_through(w, p);
+            // 尝试结束后（可能是尝试失败的情况下）, 退回来。 在for循环的下一次循环中尝试其他方向
+            moveTo(w, p, cy, cx);
+            // book[ny][nx] = 0;
+        }
+    }
+
+    return ;
+
+}
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>学习算法总是： 纸上得来终觉浅， 绝知此事要躬行。 另外，这个程序只是寻找一条路，而不是寻找最短路径。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度优先算法/" rel="tag">#深度优先算法</a>
+          
+            <a href="/tags/ncurses/" rel="tag">#ncurses</a>
+          
+            <a href="/tags/迷宫游戏/" rel="tag">#迷宫游戏</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/C语言打印柱形图及排序过程演示/" rel="next" title="C语言打印柱形图及排序过程演示">
+                <i class="fa fa-chevron-left"></i> C语言打印柱形图及排序过程演示
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dog.jpg"
+               alt="杰克" />
+          <p class="site-author-name" itemprop="name">杰克</p>
+          <p class="site-description motion-element" itemprop="description">邮箱:coinsjack@126.com</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序主体思路"><span class="nav-number"></span> <span class="nav-text">程序主体思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深度优先算法"><span class="nav-number"></span> <span class="nav-text">深度优先算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#过程-1"><span class="nav-number">1.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-1"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杰克</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
