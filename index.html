@@ -315,63 +315,19 @@
 
       
         
-          
-            <p>前言： Java没怎么学，解释可能不到位。</p>
-<p>给按钮绑定一个事件的前提就是先有一个按钮。</p>
-<h1 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h1><h2 id="一个按钮"><a href="#一个按钮" class="headerlink" title="一个按钮"></a>一个按钮</h2><p>从组件选择器里面拖拽Button到合适的位置</p>
-<p><img src="/images/android_btn/putbtn.png"></p>
-<h1 id="源码文件"><a href="#源码文件" class="headerlink" title="源码文件"></a>源码文件</h1><h2 id="增加一个类成员变量"><a href="#增加一个类成员变量" class="headerlink" title="增加一个类成员变量"></a>增加一个类成员变量</h2><pre><code>// 这个变量用来存储要绑定的按钮
-private Button btn;
-</code></pre><h2 id="增加一个函数"><a href="#增加一个函数" class="headerlink" title="增加一个函数"></a>增加一个函数</h2><pre><code>public void addListenerToBtn() // 这里没有参数
-{
-    // 使用findViewById来得到想要绑定的按钮
-    btn = (Button)findViewById(R.id.button);
-    btn.setOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    // 这个语句块中的内容会在按钮被点击的时候触发
-                    // 这里是弹出一个对话框，询问是否退出
-                    AlertDialog.Builder a_builder = new AlertDialog.Builder(main.this); // 构造一个提示框构造器 main是类名
-                    // 设置提示消息 设置是否可取消 
-                    a_builder.setMessage(&quot;真的要退出吗？&quot;).setCancelable(false)
-                    // 设置积极按钮，第二个参数是一个OnClickListener
-                    .setPositiveButton(&quot;是&quot;, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    // 设置消极按钮
-                    .setNegativeButton(&quot;否&quot;, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    // 使用创建的提示框构造器构造一个提示框
-                    AlertDialog alert = a_builder.create();
-                    // 设置标题
-                    alert.setTitle(&quot;提示&quot;);
-
-                    alert.show();
-
-                }
-            }
-    );
-}
-</code></pre><h2 id="在类函数onCreate中调用此函数"><a href="#在类函数onCreate中调用此函数" class="headerlink" title="在类函数onCreate中调用此函数"></a>在类函数onCreate中调用此函数</h2><pre><code>@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    // 看这里
-    addListenerToBtn();
-}
-</code></pre><h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="/images/android_btn/xiaoguo.gif"></p>
-
-          
+          <p><img src="/images/android_btn/xiaoguo.gif"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><br>Java瞎看了看，没怎么学，解释可能不到位。</p>
+<h1 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h1><ul>
+<li>在布局中添加按钮</li>
+<li>在Activity类中添加对应到布局文件中的类变量</li>
+<li>添加一个事件添加函数</li>
+<li>在函数onCreate中调用</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/23/安卓开发学习笔记-按钮/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

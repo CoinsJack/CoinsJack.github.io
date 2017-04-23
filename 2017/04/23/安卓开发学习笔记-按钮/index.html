@@ -84,43 +84,34 @@
 
 
 
-<meta name="description" content="前言： Java没怎么学，解释可能不到位。
-给按钮绑定一个事件的前提就是先有一个按钮。
-布局文件一个按钮从组件选择器里面拖拽Button到合适的位置
-
-源码文件增加一个类成员变量// 这个变量用来存储要绑定的按钮
-private Button btn;
-增加一个函数public void addListenerToBtn() // 这里没有参数
-{
-    // 使用findViewById来得到">
+<meta name="description" content="前言Java瞎看了看，没怎么学，解释可能不到位。
+步骤：
+在布局中添加按钮
+在Activity类中添加对应到布局文件中的类变量
+添加一个事件添加函数
+在函数onCreate中调用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Button事件 -- Android Dev Note">
 <meta property="og:url" content="http://yoursite.com/2017/04/23/安卓开发学习笔记-按钮/index.html">
 <meta property="og:site_name" content="杰克的个人博客">
-<meta property="og:description" content="前言： Java没怎么学，解释可能不到位。
-给按钮绑定一个事件的前提就是先有一个按钮。
-布局文件一个按钮从组件选择器里面拖拽Button到合适的位置
-
-源码文件增加一个类成员变量// 这个变量用来存储要绑定的按钮
-private Button btn;
-增加一个函数public void addListenerToBtn() // 这里没有参数
-{
-    // 使用findViewById来得到">
-<meta property="og:image" content="http://yoursite.com/images/android_btn/putbtn.png">
+<meta property="og:description" content="前言Java瞎看了看，没怎么学，解释可能不到位。
+步骤：
+在布局中添加按钮
+在Activity类中添加对应到布局文件中的类变量
+添加一个事件添加函数
+在函数onCreate中调用">
 <meta property="og:image" content="http://yoursite.com/images/android_btn/xiaoguo.gif">
-<meta property="og:updated_time" content="2017-04-23T11:29:17.105Z">
+<meta property="og:image" content="http://yoursite.com/images/android_btn/putbtn.png">
+<meta property="og:updated_time" content="2017-04-23T11:35:53.294Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Button事件 -- Android Dev Note">
-<meta name="twitter:description" content="前言： Java没怎么学，解释可能不到位。
-给按钮绑定一个事件的前提就是先有一个按钮。
-布局文件一个按钮从组件选择器里面拖拽Button到合适的位置
-
-源码文件增加一个类成员变量// 这个变量用来存储要绑定的按钮
-private Button btn;
-增加一个函数public void addListenerToBtn() // 这里没有参数
-{
-    // 使用findViewById来得到">
-<meta name="twitter:image" content="http://yoursite.com/images/android_btn/putbtn.png">
+<meta name="twitter:description" content="前言Java瞎看了看，没怎么学，解释可能不到位。
+步骤：
+在布局中添加按钮
+在Activity类中添加对应到布局文件中的类变量
+添加一个事件添加函数
+在函数onCreate中调用">
+<meta name="twitter:image" content="http://yoursite.com/images/android_btn/xiaoguo.gif">
 
 
 
@@ -337,8 +328,15 @@ private Button btn;
       
 
       
-        <p>前言： Java没怎么学，解释可能不到位。</p>
-<p>给按钮绑定一个事件的前提就是先有一个按钮。</p>
+        <p><img src="/images/android_btn/xiaoguo.gif"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><br>Java瞎看了看，没怎么学，解释可能不到位。</p>
+<h1 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h1><ul>
+<li>在布局中添加按钮</li>
+<li>在Activity类中添加对应到布局文件中的类变量</li>
+<li>添加一个事件添加函数</li>
+<li>在函数onCreate中调用</li>
+</ul>
+<a id="more"></a>
 <h1 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h1><h2 id="一个按钮"><a href="#一个按钮" class="headerlink" title="一个按钮"></a>一个按钮</h2><p>从组件选择器里面拖拽Button到合适的位置</p>
 <p><img src="/images/android_btn/putbtn.png"></p>
 <h1 id="源码文件"><a href="#源码文件" class="headerlink" title="源码文件"></a>源码文件</h1><h2 id="增加一个类成员变量"><a href="#增加一个类成员变量" class="headerlink" title="增加一个类成员变量"></a>增加一个类成员变量</h2><pre><code>// 这个变量用来存储要绑定的按钮
@@ -390,8 +388,7 @@ protected void onCreate(Bundle savedInstanceState) {
     // 看这里
     addListenerToBtn();
 }
-</code></pre><h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="/images/android_btn/xiaoguo.gif"></p>
-
+</code></pre>
       
     </div>
 
@@ -545,7 +542,7 @@ protected void onCreate(Bundle savedInstanceState) {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#布局文件"><span class="nav-number">1.</span> <span class="nav-text">布局文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个按钮"><span class="nav-number">1.1.</span> <span class="nav-text">一个按钮</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码文件"><span class="nav-number">2.</span> <span class="nav-text">源码文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#增加一个类成员变量"><span class="nav-number">2.1.</span> <span class="nav-text">增加一个类成员变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加一个函数"><span class="nav-number">2.2.</span> <span class="nav-text">增加一个函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在类函数onCreate中调用此函数"><span class="nav-number">2.3.</span> <span class="nav-text">在类函数onCreate中调用此函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">效果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步骤："><span class="nav-number">2.</span> <span class="nav-text">步骤：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#布局文件"><span class="nav-number">3.</span> <span class="nav-text">布局文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个按钮"><span class="nav-number">3.1.</span> <span class="nav-text">一个按钮</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码文件"><span class="nav-number">4.</span> <span class="nav-text">源码文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#增加一个类成员变量"><span class="nav-number">4.1.</span> <span class="nav-text">增加一个类成员变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加一个函数"><span class="nav-number">4.2.</span> <span class="nav-text">增加一个函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在类函数onCreate中调用此函数"><span class="nav-number">4.3.</span> <span class="nav-text">在类函数onCreate中调用此函数</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
